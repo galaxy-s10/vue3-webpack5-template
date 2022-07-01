@@ -14,19 +14,14 @@
   "scripts": {
     "build": "vue-tsc --noEmit && vite build",
     "commit": "cz",
-    "dev": "vite",
+    "start": "vite",
     "lint": "eslint --config ./.eslintrc.js . --ext .js,.jsx,.ts,.tsx,.vue",
     "lint:fix": "eslint --config ./.eslintrc.js . --ext .js,.jsx,.ts,.tsx,.vue --fix",
     "prepare": "husky install",
     "prettier": "prettier --write .",
     "preview": "vite preview",
     "push": "cz && standard-version",
-    "release": "standard-version",
-    "start": "cross-env webpack serve --config ./config/webpack.common.ts --env development",
-    "start:beta": "cross-env VUE_APP_RELEASE_PROJECT_ENV=beta VUE_APP_RELEASE_PROJECT_NAME=vue3-webpack5-template webpack serve --config ./config/webpack.common.ts --env development",
-    "start:preview": "cross-env VUE_APP_RELEASE_PROJECT_ENV=preview VUE_APP_RELEASE_PROJECT_NAME=vue3-webpack5-template webpack serve --config ./config/webpack.common.ts --env development",
-    "start:prod": "cross-env VUE_APP_RELEASE_PROJECT_ENV=prod VUE_APP_RELEASE_PROJECT_NAME=vue3-webpack5-template webpack serve --config ./config/webpack.common.ts --env production",
-    "start:stats": "cross-env WEBPACK_ANALYZER_SWITCH=true webpack serve --config ./config/webpack.common.ts --env development"
+    "release": "standard-version"
   },
   "config": {
     "commitizen": {
