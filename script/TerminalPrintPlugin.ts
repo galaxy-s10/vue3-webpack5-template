@@ -1,8 +1,11 @@
 import chalk from 'chalk';
+import WebpackDevServer from 'webpack-dev-server';
+
+const localIPv4 = WebpackDevServer.internalIPSync('v4');
 
 interface ITerminalPrintPlugin {
-  local: string;
-  network?: string;
+  port: string;
+  path: string;
 }
 
 class TerminalPrintPlugin {
@@ -17,8 +20,12 @@ class TerminalPrintPlugin {
       'TerminalPrintPlugin',
       (compilation, callback) => {
         console.log('  App running at:');
-        console.log(`- Local:   ${chalk.cyan(this.options.local)}`);
-        console.log(`- Network: ${chalk.cyan(this.options.network)}`);
+        console.log(
+          `- Local:   ${chalk.cyan(`http://localhost${this.options.local}`)}`
+        );
+        console.log(
+          `- Network: ${chalk.cyan(`${localIPv4!}${this.options.network}`)}`
+        );
         console.log();
         callback();
       }

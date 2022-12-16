@@ -145,7 +145,7 @@ const commonConfig = (isProduction) => {
     },
     resolve: {
       // 解析路径
-      extensions: ['.js', '.jsx', '.ts', '.tsx', '.vue'], // 解析扩展名
+      extensions: ['.js', '.jsx', '.ts', '.tsx', '.vue', '.mjs'], // 解析扩展名，加上.mjs是因为vant，https://github.com/youzan/vant/issues/10738
       alias: {
         '@': resolveApp('./src'), // 设置路径别名
         script: resolveApp('./script'), // 设置路径别名
@@ -159,7 +159,7 @@ const commonConfig = (isProduction) => {
          * __dirname是读取到的系统级的文件绝对路径的（即/user/xxx）
          * 但在webpack里面使用__dirname，读取到的是webpack配置的绝对路径/
          * 可能有用的polyfill就是crypto这些通用的模块，类似path和fs这些模
-         * 块其实都是他们的polyfill都是跑着浏览器的，只是有这些api原本的一些功能，
+         * 块其实都是他们的polyfill都是跑在浏览器的，只是有这些api原本的一些功能，
          * 还是没有nodejs的能力，所以webpack5干脆就移除了这些polyfill，你可以通过
          * 安装他们的polyfill来实现原本webpack4之前的功能，但是即使安装他们的polyfill
          * 也只是实现api的功能，没有他们原本在node的能力
