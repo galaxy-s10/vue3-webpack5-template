@@ -1,15 +1,11 @@
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import portfinder from 'portfinder';
 import { Configuration } from 'webpack';
-import WebpackDevServer from 'webpack-dev-server';
 import WebpackBar from 'webpackbar';
 
-import TerminalPrintPlugin from '../TerminalPrintPlugin';
 import { webpackBarEnable, outputStaticUrl } from '../constant';
 import { chalkINFO } from '../utils/chalkTip';
 import { resolveApp } from '../utils/path';
-
-const localIPv4 = WebpackDevServer.internalIPSync('v4');
 
 console.log(chalkINFO(`读取: ${__filename.slice(__dirname.length + 1)}`));
 
@@ -139,11 +135,6 @@ export default new Promise((resolve) => {
              * async 默认为 true，异步的将错误信息反馈给 webpack，如果报错了，不影响 webpack 的编译
              */
             async: true,
-          }),
-          // 打印控制调试地址
-          new TerminalPrintPlugin({
-            local: `${port}${outputStaticUrl(false)}`,
-            network: `${port}${outputStaticUrl(false)}`,
           }),
         ].filter(Boolean),
         optimization: {
