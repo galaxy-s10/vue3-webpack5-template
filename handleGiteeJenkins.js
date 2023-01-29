@@ -4,15 +4,15 @@ const path = require('path');
 const { execSync } = require('child_process');
 
 const allFile = [];
-const ignore = ['.DS_Store', '.git', '.gitignore', 'node_modules', 'dist'];
-const localDir = path.resolve(__filename, '../');
+const ignore = ['.DS_Store', '.git', 'node_modules', 'dist'];
+const localDir = path.resolve(__dirname);
 const giteeDir = path.resolve(
-  __filename,
-  '../',
-  './../../jenkins/vue3-webpack5-template'
+  __dirname,
+  '../../jenkins/vue3-webpack5-template'
 );
 
 const dir = fs.readdirSync(localDir).filter((item) => {
+  console.log(item, ignore.includes(item), 11);
   if (ignore.includes(item)) {
     return false;
   }

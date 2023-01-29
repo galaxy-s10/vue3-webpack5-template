@@ -10,7 +10,6 @@ import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { merge } from 'webpack-merge';
 import WindiCSSWebpackPlugin from 'windicss-webpack-plugin';
 
-import TerminalPrintPlugin from '../TerminalPrintPlugin';
 import {
   eslintEnable,
   outputDir,
@@ -342,8 +341,6 @@ const commonConfig = (isProduction) => {
       new BilldHtmlWebpackPlugin({
         env: 'webpack5',
       }),
-      // 终端打印调试地址
-      new TerminalPrintPlugin(),
       // 将已存在的单个文件或整个目录复制到构建目录。
       new CopyWebpackPlugin({
         patterns: [

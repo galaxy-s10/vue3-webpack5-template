@@ -3,6 +3,7 @@ import portfinder from 'portfinder';
 import { Configuration } from 'webpack';
 import WebpackBar from 'webpackbar';
 
+import TerminalPrintPlugin from '../TerminalPrintPlugin';
 import { webpackBarEnable, outputStaticUrl } from '../constant';
 import { chalkINFO } from '../utils/chalkTip';
 import { resolveApp } from '../utils/path';
@@ -106,6 +107,8 @@ export default new Promise((resolve) => {
         plugins: [
           // 构建进度条
           webpackBarEnable && new WebpackBar(),
+          // 终端打印调试地址
+          new TerminalPrintPlugin(),
           new ForkTsCheckerWebpackPlugin({
             // https://github.com/TypeStrong/fork-ts-checker-webpack-plugin
             typescript: {
