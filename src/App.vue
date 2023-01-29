@@ -9,7 +9,7 @@
         alt=""
       />
       <img
-        src="/Hololo.jpeg"
+        :src="imgUrl"
         width="100"
         alt=""
       />
@@ -26,15 +26,12 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script lang="ts" setup>
+import { outputStaticUrl } from 'script/constant';
 
-export default defineComponent({
-  components: {},
-  setup() {
-    return {};
-  },
-});
+const imgUrl = `${outputStaticUrl(
+  process.env.NODE_ENV === 'production'
+)}Hololo.jpeg`;
 </script>
 
 <style lang="scss" scoped>
