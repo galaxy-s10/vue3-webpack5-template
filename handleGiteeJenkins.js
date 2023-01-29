@@ -12,7 +12,6 @@ const giteeDir = path.resolve(
 );
 
 const dir = fs.readdirSync(localDir).filter((item) => {
-  console.log(item, ignore.includes(item), 11);
   if (ignore.includes(item)) {
     return false;
   }
