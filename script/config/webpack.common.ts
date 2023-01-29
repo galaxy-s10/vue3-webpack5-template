@@ -166,6 +166,9 @@ const commonConfig = (isProduction) => {
          * 也只是实现api的功能，没有他们原本在node的能力
          */
         // path: require.resolve('path-browserify'),
+        // path: false,
+        // fs: false,
+        // child_process: false,
       },
     },
     resolveLoader: {
@@ -337,7 +340,7 @@ const commonConfig = (isProduction) => {
       }),
       // 注入项目信息
       new BilldHtmlWebpackPlugin({
-        vuecli5: true,
+        env: 'webpack5',
       }),
       // 终端打印调试地址
       new TerminalPrintPlugin(),

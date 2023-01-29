@@ -1,6 +1,6 @@
+import './showBilldVersion';
 import './main.scss';
 
-import { version } from 'billd-utils';
 import { createApp } from 'vue';
 
 import App from './App.vue';
@@ -16,4 +16,3 @@ app.use(store);
 app.use(router);
 
 app.mount('#app');
-console.log('billd-utils version:', version);
