@@ -5,21 +5,22 @@ import ESLintPlugin from 'eslint-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { VueLoaderPlugin } from 'vue-loader';
-import { DefinePlugin, Configuration } from 'webpack';
+import { Configuration, DefinePlugin } from 'webpack';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { merge } from 'webpack-merge';
 import WindiCSSWebpackPlugin from 'windicss-webpack-plugin';
 
 import {
-  eslintEnable,
-  outputDir,
   analyzerEnable,
+  eslintEnable,
+  htmlWebpackPluginTitle,
+  outputDir,
   outputStaticUrl,
   windicssEnable,
-  htmlWebpackPluginTitle,
 } from '../constant';
 import { chalkINFO, chalkWARN } from '../utils/chalkTip';
 import { resolveApp } from '../utils/path';
+
 import devConfig from './webpack.dev';
 import prodConfig from './webpack.prod';
 

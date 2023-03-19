@@ -50,7 +50,7 @@ module.exports = {
     'no-param-reassign': 2, // 禁止对 function 的参数进行重新赋值
     'no-nested-ternary': 2, // 禁止嵌套三元
     'no-plusplus': 2, // 禁用一元操作符 ++ 和 --
-    'no-unused-vars': 2, // 禁止出现未使用过的变量
+    'no-unused-vars': 0, // 禁止出现未使用过的变量
     'vars-on-top': 2, // 要求所有的 var 声明出现在它们所在的作用域顶部
     'prefer-const': 2, // 要求使用 const 声明那些声明后不再被修改的变量
     'prefer-template': 2, // 要求使用模板字符串代替字符串连接
@@ -92,23 +92,34 @@ module.exports = {
     'no-useless-escape': 2, // 禁止不必要的转义字符
 
     // eslint-plugin-import插件
+    // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/order.md
     'import/order': [
       'error',
       {
         groups: [
-          'builtin',
-          'external',
-          'internal',
-          ['sibling', 'parent'],
-          'index',
-          'object',
-          'type',
+          'builtin', // 如:import fs from 'fs';
+          'external', // 如:import _ from 'lodash';
+          'internal', // 如:import foo from 'src/foo';
+          'parent', // 如:import foo from '../foo';
+          'sibling', // 如:import bar from './bar';
+          // ['sibling', 'parent'],
+          // ['parent', 'sibling'],
+          'index', // 如:import main from './';
+          'object', // 如:import log = console.log;
+          'type', // 如:import type { Foo } from 'foo';
         ],
-        'newlines-between': 'always', // 强制或禁止导入组之间的新行：
-        // 根据导入路径按字母顺序对每个组内的顺序进行排序
+        pathGroups: [
+          {
+            pattern: '@/**',
+            group: 'internal',
+          },
+        ],
+        'newlines-between': 'always', // 强制或禁止导入组之间的新行
+        // 根据导入路径以字母顺序排列每个组中的顺序
         alphabetize: {
-          order: 'asc' /* 按升序排序。选项：['ignore', 'asc', 'desc'] */,
-          caseInsensitive: false /* 忽略大小写。选项：[true, false] */,
+          order: 'asc', // 使用asc按升序排序，使用desc按降序排序（默认值：ignore）。
+          caseInsensitive: false, // 使用true忽略大小写，而false考虑大小写（默认值：false）。
+          orderImportKind: 'asc', // 使用asc以升序对各种导入类型进行排序，例如以type或typeof为前缀的导入，具有相同的导入路径。使用desc按降序排序（默认值：忽略）
         },
       },
     ],
@@ -147,8 +158,9 @@ module.exports = {
     'import/no-named-as-default': 0, // https://github.com/import-js/eslint-plugin-import/blob/v2.26.0/docs/rules/no-named-as-default.md
 
     // @typescript-eslint插件
-    '@typescript-eslint/no-floating-promises': 2, // 要求适当处理类似 Promise 的语句。即将await或者return Promise，或者对promise进行.then或者.catch
     '@typescript-eslint/restrict-template-expressions': 2, // 强制模板文字表达式为string类型。即const a = {};console.log(`${a}`);会报错
+    '@typescript-eslint/no-unused-vars': 2,
+    '@typescript-eslint/no-floating-promises': 1, // 要求适当处理类似 Promise 的语句。即将await或者return Promise，或者对promise进行.then或者.catch
     '@typescript-eslint/no-explicit-any': 0, // 不允许定义any类型。即let a: any;会报错
     '@typescript-eslint/no-non-null-assertion': 0, // 禁止使用非空断言（后缀运算符!）。即const el = document.querySelector('.app');console.log(el!.tagName);会报错
     '@typescript-eslint/ban-ts-comment': 0, // 禁止使用@ts-<directive>注释

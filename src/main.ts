@@ -1,12 +1,12 @@
-import './showBilldVersion';
 import './main.scss';
+import './showBilldVersion';
 
 import { createApp } from 'vue';
 
-import App from './App.vue';
-
 import router from '@/router/index';
 import store from '@/store/index';
+
+import App from './App.vue';
 
 // import 'windi.css'; // windicss-webpack-plugin会解析windi.css这个MODULE_ID
 

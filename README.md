@@ -15,13 +15,19 @@
 
 # 安装依赖
 
-```sh
+更新 billd 依赖：
+
+```bash
+pnpm i billd-utils@latest billd-scss@latest billd-html-webpack-plugin@latest billd-deploy@latest
+```
+
+```bash
 pnpm install
 ```
 
 # 项目运行
 
-```sh
+```bash
 pnpm run start
 ```
 
@@ -32,13 +38,13 @@ script/constant.ts 里的 outputStaticUrl 如果是'/aaa/'的话，默认就运�
 
 # 项目打包
 
-```sh
+```bash
 pnpm run build
 ```
 
 # git 提交
 
-```sh
+```bash
 pnpm run cz
 ```
 
