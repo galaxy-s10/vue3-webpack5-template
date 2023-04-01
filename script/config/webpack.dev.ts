@@ -4,7 +4,7 @@ import { Configuration } from 'webpack';
 import WebpackBar from 'webpackbar';
 
 import TerminalPrintPlugin from '../TerminalPrintPlugin';
-import { webpackBarEnable, outputStaticUrl } from '../constant';
+import { outputStaticUrl, webpackBarEnable } from '../constant';
 import { chalkINFO } from '../utils/chalkTip';
 import { resolveApp } from '../utils/path';
 
@@ -24,17 +24,10 @@ export default new Promise((resolve) => {
         // https://github.com/webpack/webpack/blob/main/lib/config/defaults.js
         mode: 'development',
         stats: 'none',
-        cache: {
-          type: 'filesystem',
-          buildDependencies: {
-            // https://webpack.js.org/configuration/cache/#cacheallowcollectingmemory
-            // 建议cache.buildDependencies.config: [__filename]在您的 webpack 配置中设置以获取最新配置和所有依赖项。
-            config: [__filename],
-          },
-        },
         // https://webpack.docschina.org/configuration/devtool/
         devtool: 'eval-cheap-module-source-map',
-        // devtool: 'eval', // eval，具有最高性能的开发构建的推荐选择。
+        // devtool: 'source-map',
+        // devtool: 'eval', // eval，具有最高性能的开发构建的推荐选择。        // devtool: 'eval', // eval，具有最高性能的开发构建的推荐选择。
         // 这个infrastructureLogging设置参考了vuecli5，如果不设置，webpack-dev-server会打印一些信息
         infrastructureLogging: {
           level: 'none',

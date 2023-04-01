@@ -144,6 +144,21 @@ const commonConfig = (isProduction) => {
        */
       publicPath: outputStaticUrl(isProduction),
     },
+    cache: {
+      type: 'filesystem',
+      allowCollectingMemory: true, // 它在生产模式中默认为false，并且在开发模式下默认为true。https://webpack.js.org/configuration/cache/#cacheallowcollectingmemory
+      buildDependencies: {
+        // 建议cache.buildDependencies.config: [__filename]在您的 webpack 配置中设置以获取最新配置和所有依赖项。
+        // 建议cache.buildDependencies.config: [__filename]在您的 webpack 配置中设置以获取最新配置和所有依赖项。
+        config: [
+          resolveApp('./script/config/webpack.common.ts'),
+          resolveApp('./script/config/webpack.dev.ts'),
+          resolveApp('./script/config/webpack.prod.ts'),
+          resolveApp('.browserslistrc'), // 防止修改了.browserslistrc文件后，但没修改webpack配置文件，webpack不读取最新更新后的.browserslistrc
+          resolveApp('babel.config.js'), // 防止修改了babel.config.js文件后，但没修改webpack配置文件，webpack不读取最新更新后的babel.config.js
+        ],
+      },
+    },
     resolve: {
       // 解析路径
       extensions: ['.js', '.jsx', '.ts', '.tsx', '.vue', '.mjs'], // 解析扩展名，加上.mjs是因为vant，https://github.com/youzan/vant/issues/10738
